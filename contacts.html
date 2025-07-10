@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Pras's Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Contact Me 📩</h1>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact-form">
+      <h2></h2>
+      <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" rows="5" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+      <p id="formStatus"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Prasu</p>
+  </footer>
+
+  <script>
+    // JavaScript form validation and submission
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const status = document.getElementById("formStatus");
+
+      if (!name || !email || !message) {
+        status.textContent = "Please fill in all fields.";
+        status.style.color = "red";
+      } else {
+        status.textContent = "Message sent successfully! ✅";
+        status.style.color = "green";
+        this.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>

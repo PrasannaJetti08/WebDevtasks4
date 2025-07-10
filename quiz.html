@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Quiz</title>
+  <link rel="stylesheet" href="style2.css" />
+  <style>
+    .quiz-box {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .quiz-box button {
+      margin: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-box">
+    <h2>🧠 Simple Quiz</h2>
+    <p id="question">Loading...</p>
+    <div id="options"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What is the capital of India?",
+        options: { a: "Mumbai", b: "New Delhi", c: "Chennai", d: "Kolkata" },
+        answer: "b"
+      },
+      {
+        question: "Which language runs in a web browser?",
+        options: { a: "Java", b: "C", c: "Python", d: "JavaScript" },
+        answer: "d"
+      }
+    ];
+
+    let quizIndex = 0;
+
+    function loadQuiz() {
+      const quiz = quizData[quizIndex];
+      document.getElementById("question").textContent = quiz.question;
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      for (let key in quiz.options) {
+        const btn = document.createElement("button");
+        btn.textContent = quiz.options[key];
+        btn.onclick = () => checkAnswer(key);
+        optionsDiv.appendChild(btn);
+      }
+    }
+
+    function checkAnswer(selected) {
+      if (selected === quizData[quizIndex].answer) {
+        alert("Correct!");
+      } else {
+        alert("Wrong!");
+      }
+      quizIndex = (quizIndex + 1) % quizData.length;
+      loadQuiz();
+    }
+
+    loadQuiz();
+  </script>
+
+</body>
+</html>
+
